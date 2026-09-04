@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 7-Day Wisdom Is Currency Challenge</title>
+<meta name="description" content="Seven days. Time to wisdom to ideas to a vision you can actually build. A free challenge from Wisdom Is Currency.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#241D14;--gold:#A67C2E;--goldL:#C39A4B;--ivory:#F7F2E9;--soft:#6B5F4E;--card:#FFFDF8;--line:#E7DCC6}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:hidden}
+body{background:var(--ivory);color:var(--ink);font-family:'Inter',-apple-system,'Helvetica Neue',Arial,sans-serif;line-height:1.6}
+.wrap{max-width:640px;margin:0 auto;padding:34px 20px 70px}
+.eyebrow{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:700;text-align:center}
+h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,7vw,42px);line-height:1.08;text-align:center;margin-top:11px}
+h1 em{color:var(--gold)}
+.tag{font-family:'Playfair Display',Georgia,serif;font-style:italic;text-align:center;color:var(--soft);font-size:16px;margin-top:11px}
+
+/* countdown / status bar */
+.status{background:var(--ink);color:var(--ivory);border-radius:12px;padding:20px 22px;margin-top:26px;text-align:center}
+.status .lbl{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--goldL);font-weight:700}
+.status .big{font-family:'Playfair Display',Georgia,serif;font-size:clamp(24px,6.5vw,32px);margin-top:6px;line-height:1.15}
+.status p{font-size:14px;color:#C9BFAE;margin-top:8px;line-height:1.5}
+
+/* day list */
+.days{margin-top:26px;display:flex;flex-direction:column;gap:10px}
+.day{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:15px 17px;
+ display:flex;align-items:center;gap:14px;text-align:left;width:100%;font:inherit;color:inherit;cursor:pointer}
+.day[disabled]{opacity:.5;cursor:not-allowed}
+.day .n{flex-shrink:0;font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:700;color:var(--gold);min-width:32px;text-align:center}
+.day .t{display:block;font-family:'Playfair Display',Georgia,serif;font-size:17px;font-weight:700;line-height:1.2}
+.day .s{display:block;font-size:12.5px;color:var(--soft);margin-top:3px}
+.day .mark{margin-left:auto;font-size:19px;color:var(--gold)}
+.day.done{border-left:3px solid var(--gold)}
+.day.today{border:2px solid var(--gold);box-shadow:0 6px 22px rgba(166,124,46,.16)}
+
+/* reader */
+.reader{display:none}
+.back{background:none;border:0;color:var(--gold);font:inherit;font-size:14px;font-weight:600;cursor:pointer;padding:6px 0}
+.dnum{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-top:10px}
+.dtitle{font-family:'Playfair Display',Georgia,serif;font-size:32px;line-height:1.1;margin-top:6px}
+.dsub{font-family:'Playfair Display',Georgia,serif;font-style:italic;color:var(--soft);font-size:16px;margin-top:5px}
+.verse{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:17px;line-height:1.6;
+ border-left:3px solid var(--gold);padding:13px 17px;margin:20px 0;background:var(--card);border-radius:0 6px 6px 0}
+.verse span{display:block;font-family:'Inter';font-style:normal;font-size:10px;letter-spacing:.2em;
+ text-transform:uppercase;color:var(--gold);font-weight:700;margin-top:8px}
+h2.sec{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:26px 0 9px}
+.body p{font-size:16px;line-height:1.68;margin-bottom:13px;color:#3d3427}
+.body ul{margin:0 0 13px 20px}
+.body li{font-size:16px;line-height:1.6;margin-bottom:7px;color:#3d3427}
+.body strong{color:var(--ink)}
+.anchor{background:var(--ink);color:var(--goldL);border-radius:10px;padding:15px 18px;margin-top:22px;
+ font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:17px;text-align:center;line-height:1.45}
+
+/* journal */
+.jbox{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);
+ border-radius:0 10px 10px 0;padding:17px 18px;margin-top:14px}
+.jq{font-size:16px;line-height:1.55;color:var(--ink);font-weight:600}
+textarea{width:100%;margin-top:12px;padding:13px;border-radius:8px;border:1px solid var(--line);
+ background:#fff;font-family:'Inter';font-size:16px;line-height:1.55;min-height:150px;resize:vertical;color:var(--ink)}
+textarea:focus{outline:2px solid var(--goldL);border-color:var(--goldL)}
+.saveRow{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
+button.save{background:var(--gold);color:#fff;border:0;border-radius:8px;padding:13px 24px;
+ font:inherit;font-size:15px;font-weight:700;cursor:pointer}
+button.save:hover{background:var(--goldL)}
+button.save[disabled]{opacity:.55;cursor:not-allowed}
+.saved{font-size:13px;color:var(--gold);font-weight:600}
+.hint{font-size:12.5px;color:var(--soft);margin-top:9px;line-height:1.5}
+.locked{text-align:center;padding:30px 20px;color:var(--soft)}
+.locked .big{font-family:'Playfair Display',Georgia,serif;font-size:24px;color:var(--ink);margin-bottom:8px}
+footer{text-align:center;font-size:11.5px;color:var(--soft);margin-top:40px;line-height:1.7}
+.namebar{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:20px}
+.namebar label{display:block;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px}
+.namebar input{width:100%;padding:11px 12px;border-radius:8px;border:1px solid var(--line);font-family:'Inter';font-size:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="home">
+    <p class="eyebrow">Wisdom Is Currency</p>
+    <h1>The 7-Day <em>Challenge</em></h1>
+    <p class="tag">From time… to wisdom… to a vision you can actually build.</p>
+
+    <div class="status" id="status"></div>
+
+    <div class="namebar" id="namebar">
+      <label for="who">Your name &amp; email — so your entries reach Minister Ken</label>
+      <input id="who" placeholder="Name">
+      <input id="whoEmail" placeholder="Email" style="margin-top:8px">
+    </div>
+
+    <div class="days" id="days"></div>
+
+    <p class="hint" style="text-align:center;margin-top:22px">
+      Each day has three parts: <strong>the Teaching</strong> (5 minutes), <strong>the Work</strong>
+      (the actual doing), and <strong>the Journal</strong> (one honest answer). Your answers save on this
+      device and come to Minister Ken so nobody walks this alone.
+    </p>
+
+    <footer>
+      Wisdom is the currency. Wealth is what it buys —<br>God · health · relationships · time freedom · finances<br><br>
+      Wisdom Is Currency · Greater Works Church<br>Under the leadership of Bishop Joe Halman &amp; Pastor Debra Halman
+    </footer>
+  </div>
+
+  <div id="reader" class="reader"></div>
+</div>
+
+<script>
+const START = new Date(2026, 9, 1);   // Oct 1 2026 = Day 1 (month is 0-indexed)
+const FORM  = "https://formsubmit.co/Ken@SignatureBrandMarketing.com";
+let DAYS = [];
+
+const midnight = d => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+function currentDay(){
+  const diff = Math.floor((midnight(new Date()) - midnight(START)) / 86400000);
+  return diff + 1;                     // 1 on Oct 1; <1 before; >7 after
+}
+const K = n => "wic-day-" + n;
+const get = k => { try { return localStorage.getItem(k) || ""; } catch(e){ return ""; } };
+const set = (k,v) => { try { localStorage.setItem(k,v); } catch(e){} };
+
+function renderStatus(){
+  const cd = currentDay(), el = document.getElementById("status");
+  if (cd < 1){
+    const away = 1 - cd;
+    el.innerHTML = `<div class="lbl">The challenge begins</div>
+      <div class="big">Thursday, October 1</div>
+      <p>${away} ${away===1?"day":"days"} away. We walk it together — one day at a time, the whole community at once.
+      Day 1 unlocks that morning.</p>`;
+  } else if (cd > 7){
+    el.innerHTML = `<div class="lbl">You finished</div><div class="big">All seven days.</div>
+      <p>Your vision is written. Now go work it — and keep every entry below.</p>`;
+  } else {
+    el.innerHTML = `<div class="lbl">Today</div><div class="big">Day ${cd}</div>
+      <p>${DAYS[cd-1] ? DAYS[cd-1].title : ""} — tap below to begin.</p>`;
+  }
+}
+
+function renderDays(){
+  const cd = currentDay(), box = document.getElementById("days");
+  box.innerHTML = "";
+  DAYS.forEach(d => {
+    const open = d.day <= cd, done = !!get(K(d.day));
+    const b = document.createElement("button");
+    b.className = "day" + (done ? " done" : "") + (d.day === cd ? " today" : "");
+    if (!open) b.disabled = true;
+    b.innerHTML = `<span class="n">${d.day}</span>
+      <span><span class="t">${d.title}</span><span class="s">${open ? d.subtitle : "Unlocks " + unlockLabel(d.day)}</span></span>
+      <span class="mark">${done ? "✓" : (open ? "→" : "🔒")}</span>`;
+    if (open) b.onclick = () => openDay(d.day);
+    box.appendChild(b);
+  });
+}
+function unlockLabel(n){
+  const dt = new Date(START); dt.setDate(dt.getDate() + n - 1);
+  return dt.toLocaleDateString(undefined,{month:"short", day:"numeric"});
+}
+
+function openDay(n){
+  const d = DAYS[n-1];
+  document.getElementById("home").style.display = "none";
+  const r = document.getElementById("reader");
+  r.style.display = "block";
+  r.innerHTML = `
+    <button class="back" id="back">← All days</button>
+    <div class="dnum">Day ${d.day}</div>
+    <div class="dtitle">${d.title}</div>
+    <div class="dsub">${d.subtitle}</div>
+    ${d.verse ? `<div class="verse">"${d.verse}"<span>${d.verseRef}</span></div>` : ""}
+    <h2 class="sec">The Teaching</h2><div class="body">${d.teaching_html}</div>
+    <h2 class="sec">The Work</h2><div class="body">${d.work_html}</div>
+    <h2 class="sec">The Journal</h2>
+    <div class="jbox">
+      <div class="jq">${d.journal.replace(/\n/g," ")}</div>
+      <textarea id="entry" placeholder="Write it down. Don't just think it.">${get(K(n))}</textarea>
+      <div class="saveRow">
+        <button class="save" id="saveBtn">Save &amp; send my answer</button>
+        <span class="saved" id="savedMsg"></span>
+      </div>
+      <p class="hint">Saves on this device and sends to Minister Ken — that's the accountability.
+      ${n===7 ? "<strong>This one is your vision. Take your time with it.</strong>" : ""}</p>
+    </div>
+    ${d.anchor ? `<div class="anchor">${d.anchor}</div>` : ""}
+    <footer>Wisdom Is Currency · Greater Works Church</footer>`;
+  window.scrollTo(0,0);
+  document.getElementById("back").onclick = goHome;
+  document.getElementById("saveBtn").onclick = () => saveEntry(n);
+}
+
+function goHome(){
+  document.getElementById("reader").style.display = "none";
+  document.getElementById("home").style.display = "block";
+  renderStatus(); renderDays(); window.scrollTo(0,0);
+}
+
+function saveEntry(n){
+  const txt = document.getElementById("entry").value.trim();
+  const btn = document.getElementById("saveBtn"), msg = document.getElementById("savedMsg");
+  if (!txt){ msg.textContent = "Write something first."; return; }
+  set(K(n), txt);
+  const name = document.getElementById("who") ? get("wic-name") : "";
+  btn.disabled = true; msg.textContent = "Saving…";
+  const fd = new FormData();
+  fd.append("Name", get("wic-name") || "(no name given)");
+  fd.append("Email", get("wic-email") || "(no email given)");
+  fd.append("Day", `Day ${n} — ${DAYS[n-1].title}`);
+  fd.append("Their answer", txt);
+  fd.append("_subject", `WIC Challenge — Day ${n} — ${get("wic-name") || "participant"}`);
+  fd.append("_template", "table");
+  fd.append("_captcha", "false");
+  fetch(FORM, { method:"POST", body:fd, mode:"no-cors" })
+    .then(()=>{ msg.textContent = "Saved ✓"; btn.disabled = false; })
+    .catch(()=>{ msg.textContent = "Saved on this device ✓"; btn.disabled = false; });
+}
+
+// name/email persistence
+function wireName(){
+  const n = document.getElementById("who"), e = document.getElementById("whoEmail");
+  n.value = get("wic-name"); e.value = get("wic-email");
+  n.oninput = () => set("wic-name", n.value.trim());
+  e.oninput = () => set("wic-email", e.value.trim());
+}
+
+fetch("days.json").then(r=>r.json()).then(d=>{
+  DAYS = d; renderStatus(); renderDays(); wireName();
+});
+</script>
+</body>
+</html>
