@@ -37,6 +37,11 @@ button{width:100%;margin-top:24px;padding:16px;border:0;border-radius:8px;backgr
  font-family:'Inter';font-size:17px;font-weight:700;cursor:pointer;letter-spacing:.02em}
 button:hover{background:#d0a95c}
 .fine{font-size:12px;color:#9A8F7C;margin-top:14px;text-align:center}
+.consent{display:flex;align-items:flex-start;gap:11px;margin:20px 0 0;padding:13px 14px;
+ background:#2e261a;border:1px solid #4a3f2e;border-radius:8px;cursor:pointer;
+ font-size:13.5px;letter-spacing:0;text-transform:none;color:#EFE7D8;font-weight:400;line-height:1.5}
+.consent input{width:19px;height:19px;flex:0 0 19px;margin-top:1px;accent-color:var(--goldL);cursor:pointer}
+.consent em{color:#C9BFAE;font-style:italic}
 .close{font-family:'Playfair Display',Georgia,serif;font-style:italic;text-align:center;font-size:17px;color:var(--ink);margin-top:40px;line-height:1.6}
 .close b{color:var(--gold);font-style:normal}
 footer{text-align:center;font-size:11px;color:var(--soft);margin-top:26px;letter-spacing:.06em}
@@ -65,7 +70,7 @@ footer{text-align:center;font-size:11px;color:var(--soft);margin-top:26px;letter
   <div class="formcard">
     <h2>Sign up <em>today.</em></h2>
     <p class="note">Put your name in — you'll get the details for the September 1st launch gathering and everything that follows. It costs nothing to sign up.</p>
-    <form action="https://formsubmit.co/Ken@SignatureBrandMarketing.com" method="POST">
+    <form id="wicform" action="https://formsubmit.co/Ken@SignatureBrandMarketing.com" method="POST">
       <input type="hidden" name="_subject" value="WIC Sign-Up — Greater Works">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_captcha" value="false">
@@ -78,6 +83,13 @@ footer{text-align:center;font-size:11px;color:var(--soft);margin-top:26px;letter
       <input id="email" name="Email" type="email" required autocomplete="email" placeholder="you@email.com">
       <label for="build">What would you build if you had the wisdom and the tools?</label>
       <textarea id="build" name="What I would build" placeholder="A business, a skill, a legacy… tell us in a sentence. (Optional)"></textarea>
+
+      <input type="hidden" name="Text me" value="No">
+      <label for="sms" class="consent">
+        <input type="checkbox" id="sms" name="Text me" value="YES — okay to text">
+        <span>Text me reminders for the Thursday gatherings and the 7-Day Challenge. <em>You'll get the details by email either way.</em></span>
+      </label>
+
       <button type="submit">Count me in ✝</button>
       <p class="fine">Your information stays with the ministry. No spam, ever.</p>
     </form>
@@ -93,5 +105,6 @@ footer{text-align:center;font-size:11px;color:var(--soft);margin-top:26px;letter
   <p class="close">"Greater works than these shall he do." — John 14:12<br><b>The name over this house is a promise. Let's build like it.</b></p>
   <footer>Under the leadership of Bishop Joe Halman &amp; Pastor Debra Halman<br>Wisdom Is Currency · Greater Works Church · 2026</footer>
 </div>
+
 </body>
 </html>
