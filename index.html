@@ -28,6 +28,7 @@ h1 em{color:var(--gold)}
 .formcard h2{font-family:'Playfair Display',Georgia,serif;font-size:26px;line-height:1.2}
 .formcard h2 em{color:var(--goldL)}
 .formcard .note{font-size:14px;color:#C9BFAE;margin-top:8px}
+.ghlform{margin-top:18px}
 label{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--goldL);font-weight:700;margin:18px 0 6px}
 input,textarea{width:100%;padding:13px 14px;border-radius:8px;border:1px solid #4a3f2e;background:#2e261a;color:var(--ivory);
  font-family:'Inter';font-size:16px}
@@ -90,30 +91,29 @@ footer{text-align:center;font-size:11px;color:var(--soft);margin-top:26px;letter
 
   <div class="formcard">
     <h2>Sign up <em>today.</em></h2>
-    <p class="note">Put your name in — you'll get the details for the September 1st launch gathering and everything that follows. It costs nothing to sign up.</p>
-    <form id="wicform" action="https://formsubmit.co/Ken@SignatureBrandMarketing.com" method="POST">
-      <input type="hidden" name="_subject" value="WIC Sign-Up — Greater Works">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://signaturebrandmarketing.github.io/wisdom/thanks.html">
-      <label for="name">Your name</label>
-      <input id="name" name="Name" required autocomplete="name" placeholder="First &amp; last name">
-      <label for="phone">Phone</label>
-      <input id="phone" name="Phone" type="tel" required autocomplete="tel" placeholder="(555) 555-5555">
-      <label for="email">Email</label>
-      <input id="email" name="Email" type="email" required autocomplete="email" placeholder="you@email.com">
-      <label for="build">What would you build if you had the wisdom and the tools?</label>
-      <textarea id="build" name="What I would build" placeholder="A business, a skill, a legacy… tell us in a sentence. (Optional)"></textarea>
-
-      <input type="hidden" name="Text me" value="No">
-      <label for="sms" class="consent">
-        <input type="checkbox" id="sms" name="Text me" value="YES — okay to text">
-        <span>Text me reminders for the Thursday gatherings and the 7-Day Challenge. <em>You'll get the details by email either way.</em></span>
-      </label>
-
-      <button type="submit">Count me in ✝</button>
+    <p class="note">Put your name in and Thursday's Zoom link comes straight to your email. We gather every Thursday at 7:00 PM Eastern. It costs nothing to sign up.</p>
+    <div class="ghlform">
+      <iframe
+        src="https://api.leadconnectorhq.com/widget/form/287CKVsV9qpD3LIUqiJD"
+        style="width:100%;height:100%;min-height:760px;border:none;border-radius:8px;background:transparent"
+        id="inline-287CKVsV9qpD3LIUqiJD"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name="WIC Sign-Up"
+        data-height="760"
+        data-layout-iframe-id="inline-287CKVsV9qpD3LIUqiJD"
+        data-form-id="287CKVsV9qpD3LIUqiJD"
+        data-cookie-consent="true"
+        data-cookie-consent-provider="auto"
+        title="WIC Sign-Up"></iframe>
+      <script src="https://link.msgsndr.com/js/form_embed.js"></script>
       <p class="fine">Your information stays with the ministry. No spam, ever.</p>
-    </form>
+    </div>
   </div>
 
   <div class="members" id="members">
