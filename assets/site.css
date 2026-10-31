@@ -278,6 +278,13 @@ ul,ol{margin:0;padding:0}
 @media (min-width:56rem){.about-ken{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(3rem,7vw,7rem)}
   .about-ken figure{order:2}}
 
+/* ---------- soft photo edges: Ken's photos feather into the page, no hard edge ---------- */
+.hero-figure img,.about-ken figure img,.page-hero.split figure:not(.cover) img,.story-figure img{
+  --fade-x:linear-gradient(to right,transparent 0,rgba(0,0,0,.4) 5%,rgba(0,0,0,.8) 10%,#000 16%,#000 84%,rgba(0,0,0,.8) 90%,rgba(0,0,0,.4) 95%,transparent 100%);
+  --fade-y:linear-gradient(to bottom,transparent 0,rgba(0,0,0,.4) 4%,rgba(0,0,0,.8) 8%,#000 13%,#000 82%,rgba(0,0,0,.8) 89%,rgba(0,0,0,.4) 95%,transparent 100%);
+  -webkit-mask-image:var(--fade-x),var(--fade-y);-webkit-mask-composite:source-in;
+  mask-image:var(--fade-x),var(--fade-y);mask-composite:intersect}
+
 /* ---------- ink close: join + footer ---------- */
 .on-ink{background:var(--ink);color:var(--on-ink)}
 .on-ink h1,.on-ink h2,.on-ink h3{color:var(--on-ink)}
