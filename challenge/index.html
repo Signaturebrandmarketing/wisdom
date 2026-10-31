@@ -86,7 +86,7 @@ footer{text-align:center;font-size:11.5px;color:var(--soft);margin-top:40px;line
     <div class="status" id="status"></div>
 
     <div class="namebar" id="namebar">
-      <label for="who">Your name &amp; email — so your entries reach Minister Ken</label>
+      <label for="who">Your name &amp; email — so your entries reach Ken</label>
       <input id="who" placeholder="Name">
       <input id="whoEmail" placeholder="Email" style="margin-top:8px">
     </div>
@@ -96,7 +96,7 @@ footer{text-align:center;font-size:11.5px;color:var(--soft);margin-top:40px;line
     <p class="hint" style="text-align:center;margin-top:22px">
       Each day has three parts: <strong>the Teaching</strong> (5 minutes), <strong>the Work</strong>
       (the actual doing), and <strong>the Journal</strong> (one honest answer). Your answers save on this
-      device and come to Minister Ken so nobody walks this alone.
+      device and come to Ken so nobody walks this alone.
     </p>
 
     <footer>
@@ -122,20 +122,23 @@ const K = n => "wic-day-" + n;
 const get = k => { try { return localStorage.getItem(k) || ""; } catch(e){ return ""; } };
 const set = (k,v) => { try { localStorage.setItem(k,v); } catch(e){} };
 
+// Start anytime: the status follows this visitor's own progress (entries saved on this device), not the calendar.
+function nextDay(){
+  for (let n = 1; n <= DAYS.length; n++){ if (!get(K(n))) return n; }
+  return 0;                            // 0 = all seven saved
+}
 function renderStatus(){
-  const cd = currentDay(), el = document.getElementById("status");
-  if (cd < 1){
-    const away = 1 - cd;
-    el.innerHTML = `<div class="lbl">The challenge begins</div>
-      <div class="big">Thursday, October 1</div>
-      <p>${away} ${away===1?"day":"days"} away. We walk it together — one day at a time, the whole community at once.
-      Day 1 unlocks that morning.</p>`;
-  } else if (cd > 7){
+  const nd = nextDay(), el = document.getElementById("status");
+  if (nd === 1){
+    el.innerHTML = `<div class="lbl">Start any day</div>
+      <div class="big">Begin with Day 1</div>
+      <p>Seven days, one at a time, at your own pace. Each day is a short teaching, the work, and one honest journal question.</p>`;
+  } else if (nd === 0){
     el.innerHTML = `<div class="lbl">You finished</div><div class="big">All seven days.</div>
-      <p>Your vision is written. Now go work it — and keep every entry below.</p>`;
+      <p>Your vision is written. Now go work it, and keep every entry below.</p>`;
   } else {
-    el.innerHTML = `<div class="lbl">Today</div><div class="big">Day ${cd}</div>
-      <p>${DAYS[cd-1] ? DAYS[cd-1].title : ""} — tap below to begin.</p>`;
+    el.innerHTML = `<div class="lbl">Welcome back</div><div class="big">Day ${nd} is next</div>
+      <p>${DAYS[nd-1] ? DAYS[nd-1].title : ""}. Tap it below to keep going.</p>`;
   }
 }
 
@@ -145,7 +148,7 @@ function renderDays(){
   DAYS.forEach(d => {
     const open = d.day <= cd, done = !!get(K(d.day));
     const b = document.createElement("button");
-    b.className = "day" + (done ? " done" : "") + (d.day === cd ? " today" : "");
+    b.className = "day" + (done ? " done" : "") + (d.day === nextDay() ? " today" : "");
     if (!open) b.disabled = true;
     b.innerHTML = `<span class="n">${d.day}</span>
       <span><span class="t">${d.title}</span><span class="s">${open ? d.subtitle : "Unlocks " + unlockLabel(d.day)}</span></span>
@@ -180,7 +183,7 @@ function openDay(n){
         <button class="save" id="saveBtn">Save &amp; send my answer</button>
         <span class="saved" id="savedMsg"></span>
       </div>
-      <p class="hint">Saves on this device and sends to Minister Ken — that's the accountability.
+      <p class="hint">Saves on this device and sends to Ken — that's the accountability.
       ${n===7 ? "<strong>This one is your vision. Take your time with it.</strong>" : ""}</p>
     </div>
     ${d.anchor ? `<div class="anchor">${d.anchor}</div>` : ""}
