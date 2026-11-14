@@ -268,6 +268,9 @@ ul,ol{margin:0;padding:0}
 .path .note{margin-top:1rem;font-size:var(--fs-sm);color:var(--soft)}
 .after-paths{margin-top:2.5rem}
 
+.paths.three .path{display:flex;flex-direction:column}.paths.three .path .btn-row{margin-top:auto;padding-top:1.25rem}
+@media (min-width:52rem){.paths.three{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(2rem,4vw,3.5rem)}}
+
 /* ---------- about Ken (home) ---------- */
 .about-ken{display:grid;gap:2.5rem;align-items:center}
 .about-ken figure{margin:0}
